@@ -72,6 +72,7 @@ class CreateCustomer(graphene.Mutation):
             email=email,
             phone=phone
         )
+        customer.save()
 
         return CreateCustomer(
             customer=customer,
