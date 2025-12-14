@@ -6,6 +6,30 @@ from graphene_django import DjangoObjectType
 
 from .models import Customer, Product, Order
 
+class CRMQuery:
+    pass
+
+
+class Query(graphene.ObjectType):
+    pass
+
+
+class CRMQueryWithResolvers(CRMQuery, graphene.ObjectType):
+    customers = graphene.List(CustomerType)
+    products = graphene.List(ProductType)
+    orders = graphene.List(OrderType)
+
+    def resolve_customers(self, info):
+        return Customer.objects.all()
+
+    def resolve_products(self, info):
+        return Product.objects.all()
+
+    def resolve_orders(self, info):
+        return Order.objects.all()
+
+
+Query = CRMQueryWithResolvers
 
 class CustomerType(DjangoObjectType):
     class Meta:
