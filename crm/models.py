@@ -22,7 +22,7 @@ class Product(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    total_amount = models.DecimalField(max_digits=100, decimal_places=2)
     order_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
